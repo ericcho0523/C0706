@@ -58,10 +58,11 @@ void InitTotalAry(int* ptr, int size){
 // GetSumAry 함수는, 배열과 시이즈를 넘겨받아, 배열 내 모든
 // 요소의 값의 합을 돌려주는 함수입니다.
 int GetSumAry(int* ptr,int size){
+    int sum = 0;
     for(int i=0;i<size;i++){
-        int sum = 0;
         sum += *(ptr+i);
     }
+    return sum;
 }
 
 // GetAvgAry 함수는, 배열과 시이즈를 넘겨받아, 배열 내 모든
@@ -71,10 +72,51 @@ double GetAvgAry(int* ptr,int size){
     for(int i=0;i<size;i++){
         sum += *(ptr+i);
     }
-    int avg = 0;
-    avg = sum / size;    
+    return (double)sum/size;
 }
-// 
+
+
+
+// GetEvenCount, GetOddCount, SetEvenZero, SetOddZero
+// 배열과 사이즈 받아 짝수 개수 리턴
+// 배열과 사이즈 받아 홀수 개수 리턴
+// 배열과 사이즈 받아 짝수를 0으로 만든 후 출력
+// 배열과 사이즈 받아 홀수를 0으로 만든 후 출력
+int GetEvenCount(int* ptr, int size){
+    int count=0;
+    for(int i=0;i<size;i++){
+        if(*(ptr+i)%2==0){
+            count++;
+        }
+    }
+    return count;
+}
+int GetOddCount(int* ptr, int size){
+    int count=0;
+    for(int i=0;i<size;i++){
+        if(*(ptr+i)%2!=0){
+            count++;
+        }
+    }
+    return count;
+}
+int SetEvenZero(int* ptr, int size){
+    for(int i=0;i<size;i++){
+        if(*(ptr+i)%2==0){
+            *(ptr+i) = 0;
+        }
+        printf("%d ",*(ptr+i));
+    }
+    
+}
+int SetOddZero(int* ptr, int size){
+    for(int i=0;i<size;i++){
+        if(*(ptr+i)%2!=0){
+            *(ptr+i) = 0;
+        }
+        printf("%d ",*(ptr+i));
+    }
+}
 // ===============================================================
 int main(){
     srand(time(NULL));
@@ -98,10 +140,11 @@ int main(){
     // ===============================================
     printf("============================\n");
 
-
-
     int ary4[30] = {0};
-    GetSumAry(ary4,30);
-    GetAvgAry(ary4,30);
+
+
+
+
+
 
 }// -=============================================================
