@@ -2,7 +2,7 @@
 #include <stdio.h>
 int main(){
     char str[100]={0};
-    scanf("%[^\n]", str);
+    gets(str);
     for(int i=0;i<100;i++){
         if(str[i]=='\0') break;
         if(str[i] != ' ') {
