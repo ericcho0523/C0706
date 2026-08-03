@@ -1,2 +1,2 @@
 
-    printf("%d\n",      &ary[1]);
+   scanf("%s",(*ptr).name);
