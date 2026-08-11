@@ -1,2 +1,2 @@
 
-   scanf("%s",(*ptr).name);
+    else{
