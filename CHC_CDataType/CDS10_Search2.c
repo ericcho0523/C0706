@@ -114,15 +114,34 @@ void ArrayReverse(Array* mainAry){
     }
     // 3. 그 외의 경우
     else{
+        // 방법 1. 2n 연산 필요
         // 원본에 해당하는 크기만큼 임시 배열 생성 
-        int* temp = (int*)malloc(mainAry->size * sizeof(int));  
-        // 모든 데이터를 거꾸로, temp는 순서대로 저장
-        // temp의 데이터를 원본에 순서대로 저장하면 뒤집어짐
-        // 임시배열 소멸
-        free(temp);
+        // int* temp = (int*)malloc(mainAry->size * sizeof(int));  
+        // // 모든 데이터를 거꾸로, temp는 순서대로 저장
+        // for(int i=0;i<mainAry->size;i++){
+        //     temp[i] = mainAry->ary[mainAry->size-1-i];
+        // }
+        // // temp의 데이터를 원본에 순서대로 저장하면 뒤집어짐
+        // for(int i=0;i<mainAry->size;i++){
+        //     mainAry->ary[i] = temp[i];    
+        // }
+        // // 임시배열 소멸
+        // free(temp);
+        // ------------------------------------------------------------
+        // 방법 2. n/2 연산 필요
+        int left = 0; // 첫 인덱스 
+        int right = mainAry->size-1; // 마지막 인덱스
+        for( ;left<=right; ){
+            // 0. Left, Right 같으면 탈출
+            if(left==right) break;
+            // 1. 교환
+            Swap(&mainAry->ary[left], &mainAry->ary[right]);
+            // 2. Left  + 1
+            left++;
+            // 3. Right - 1
+            right--;
+        }
     }
-    
-
 }
 
 
@@ -136,5 +155,47 @@ int main(){
     PrintArray(&ary);
     ArrayReverse(&ary);
 
+    InitArray(&ary,37); // 정렬 안되어있음.
+    PrintArray(&ary);
+    ArrayReverse(&ary);
+    PrintArray(&ary);
+
+    SortArray(&ary,ASC); //오름차순
+    PrintArray(&ary);
+    ArrayReverse(&ary); // 오름차순 -> 내림차순
+    PrintArray(&ary);
+    ArrayReverse(&ary); // 내림차순 -> 오름차순
+    PrintArray(&ary);
+
 } // ===============================================================
+// 
+// 정렬 알고리즘 총정리 시스템
+/*
+    ENUM 
+    ASC, DESC, UNK -> 문자를 숫자로 취급 Define
+    Define 많아지면, 부담됨 ... -> 문자를 숫자로 취급하는
+    자료형 = ENUM
+
+    현재 여기에 나와있는 코드인 ASC, DESC, UNK를
+    ENUM을 조사해서 만든 후, ENUM으로 처리하세요
+
+    // ---------------------------------------------------------
+    전체 알고리즘 정리 < 시스템 > -- 500~600
+    여태 배운 자료구조들을 통틀어 사용할 수 있게
+    코드를 제작해야 합니다.
+    1. 자료구조 선택
+      > 연결리스트, 스택, 큐, 힙, 트리, 배열 
+    2. 선택된 자료구조들에 대해 아래와 같은 기능제공   
+     - 초기화 - 만들기
+     - 출력하기
+     - 자료구조들의 특징에 따른 삽입/삭제
+    3. 배열에 대해서는 아래 기능을 제공
+     - 초기화 - 만들기
+     - 출력하기
+     - 정 렬 하 기 
+    4. 특정 자료구조에 대해 작업하다 뒤로가기를 하면
+      1번이 다시 나와서 다른 자료구조 선택할수있게   
+
+
+*/
 

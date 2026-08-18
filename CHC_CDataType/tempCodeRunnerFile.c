@@ -1,1 +1,2 @@
-출력
+
+    InitSchool(stu,1000);
